@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content="AI,问答,提问"/>
+    <meta name="author" content="YalienY,HanXC"/>
+    <!--link rel="shortcut icon" type="imges/x-icon" href="/static/images/AI_icon.png">
+    <link href="/static/images/AI_icon.png" rel="icon" type="image/x-icon"/>
+    <link href="/static/images/AI_icon.png" rel="Bookmark"/-->
+    <title>
+        AI智能问答平台
+    </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/index.css' %}">
+    <script src="{% static 'js/vue.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+<div id="vue-app" class="main">
+    <div id='title'>
+        <img id='AIlogo' src="{% static 'images/background_logo.png' %}"/>
+        <div class="background">
+            <img id='AI' src="{% static 'images/background_top.png' %}"/>
+        </div>
+    </div>
+    <form>
+        <img src="{% static 'images/AI_logo.png' %}" class="logo">
+        <input id="hiddenText" type="text" style="display:none"/>
+        <input id="textbox" @keydown.enter="doSearch" autocomplete="off" type="text" accept-charset="UTF-8"
+               placeholder="向人工智能提问......" v-model="searchText" @focus="onFocus()"/>
+        <button id="search" type="button" @click="doSearch">搜索一下</button>
+        <label class="msg" v-if="showMsg" style="font-family: 'Microsoft YaHei'; font-size: 18px">请输入搜索内容！</label>
+    </form>
+    <div id="footer">
+        <div style="width: 100%; height: 85px; text-align: left">
+            <span style="height: 10px; background-color: #00a3d9; width: 100%; display: block"></span>
+            <label style="font-size: 18px; margin-left: 20px; font-family: 'Microsoft YaHei'">探索领域</label>
+            <div style="margin-left: 100px">
+                <img v-for="(area) in areas" :src="area.icon" :title="area.title" style="width: 32px; margin-right: 20px">
+            </div>
+        </div>
+        <hr>
+        <a>POC版</a><br>
+        <a style="padding:10px 0 10px 0;" target="_blank"
+           href="http://wpa.qq.com/msgrd?v=3&uin=909731266&site=qq&menu=yes">
+            <img border="0" src="http://wpa.qq.com/pa?p=2:1051712028:41" alt="联系指导老师" title="联系指导老师"/></a>
+        <a>指导老师：胡庆春</a>
+    </div>
+</div>
+</body>
+<script>
+    // 探索领域
+    const areas = [{title: "C语言", icon: "{% static 'images/background_C.png' %}"}]
+    const vueApp = new Vue({
+        el: "#vue-app",
+        data: {searchText: "", showMsg: false, areas: areas},
+        methods: {
+            doSearch() {
+                if (!this.searchText) {
+                    this.showMsg = true;
+                } else {
+                    jump('searchResult.html', this.searchText);
+                }
+            },
+            onFocus() {
+                this.showMsg = false;
+            }
+        }
+    })
+</script>
+</html>

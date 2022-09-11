@@ -1,0 +1,246 @@
+@font-face
+{
+    font-family:'SourceHanSerifSC-Heavy';
+    src:url('../font-family/SourceHanSerifSC-Heavy.otf');
+}
+html
+{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+body
+{
+    font-family: Tahoma,Arial,"宋体";
+    background-size:cover;
+    background-repeat:no-repeat;
+    margin:0%;
+    height: 100%;
+    width:100%;
+    text-overflow: ellipsis;
+}
+div.main
+{
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    height: 100%;
+}
+#AI
+{
+    width:40em;
+}
+img
+{
+    display:inline-block;
+}
+h1
+{
+    display:inline-block;
+    margin:2% 0%;
+}
+#title
+{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space:nowrap;
+    width: 100%;
+    text-align: center;
+    display: inline-table;
+}
+
+#title .background {
+    background-color: #00a3d9;
+    //height: 303px;
+    width: 100%;
+    //position: absolute;
+    //margin-top: 74px;
+    z-index: -1;
+}
+#title h1
+{
+    font-family:'SourceHanSerifSC-Heavy',"微软雅黑";
+    font-size:5em;
+    color:mediumblue;
+    margin-bottom:35px;
+}
+form
+{
+    position:relative;
+    top:50%;
+    white-space:nowrap;
+    width:75%;
+    height: 95px;
+    padding:0% 0% 0% 25%;
+}
+input[type="text"]
+{
+    position: relative;
+    top: 50%;
+    height:42px;
+    font-size:20px;
+    width:62.8%;
+    padding:0%;
+    border: 1px solid rgb(45, 129, 240);
+    margin:0px;
+}
+
+.logo {
+    position: absolute;
+    margin-left: -78px;
+    margin-top: 15px;
+}
+.msg {
+    position: absolute;
+    left: 50%;
+    margin-top: 97px;
+    margin-left: -50px;
+    color: red;
+}
+button#search
+{
+    position: relative;
+    top: 50%;
+    right:0%;
+    height:42px;
+    font-size:20px;
+    background-color:black;
+    border:0px;
+    color:white;
+    margin:0px;
+}
+button#search:hover
+{
+    cursor:pointer;
+}
+ul.search-layer
+{
+    position: absolute;
+    top: 50%;
+    margin:0%;
+    font-size:20px;
+    margin:0% 0% 0% 25%;
+    border:1px solid rgb(45, 129, 240);
+    border-top:0px;
+    background-color:white;
+    list-style-type: none;
+    padding:0px;
+    width:47.1%;
+    display:none;/*滑动特效前不显示*/
+}
+li.search-layer-item
+{
+    height:1.2em;
+    padding:5px 0px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* 限制在一个块元素显示的文本的行数 */
+    -webkit-box-orient: vertical; /* 垂直排列 */
+    word-break: break-all;  /* 内容自动换行 */
+}
+a.linkbar
+{
+    text-decoration:none;
+    color:black;
+}
+li.search-layer-item:hover
+{
+    background-color:dodgerblue;
+    font-weight:bold;
+}
+li#pass
+{
+    font-size:4px;
+    color:gray;
+    padding: 6px 0px;
+    height:30px;
+}
+li#pass:hover
+{
+    background-color:white;
+}
+img#AI
+{
+    width:30%;
+}
+
+img#AIlogo
+{
+    width:15%;
+}
+
+#footer
+{
+    width:100%;
+    position:absolute;
+    bottom:1%;
+    text-align:right;
+    font-size:15px;
+}
+#footer a
+{
+    color:gray;
+    text-decoration:none;
+    padding-right:5em;
+}
+#footer a:hover
+{
+    color:blue;
+}
+
+@media screen and (max-width:1000px) {
+
+   button#search{
+       display: block;
+       left:50%;
+       transform:translate(-50%,0);
+       height:4vh;
+       font-size: 2vh;
+       margin-top:4vh;
+   } 
+   input#textbox{
+       display: block;
+       left:50%;
+       transform:translate(-50%,0);
+       width:90%;
+       height: 5vh;
+       font-size:18px;
+   }
+   .logo {
+       position: absolute;
+       left: 50%;
+       margin-left: -13vh;
+       margin-top: 11vh;
+   }
+   .msg {
+       position: absolute;
+       left: 50%;
+       margin-top: -3vh;
+       margin-left: -5vh;
+       color: red;
+   }
+   form{
+       width:100%;
+       padding:0;
+   }
+   #footer{
+       font-size:2vh;
+   }
+   #footer a{
+       display: block;
+       position:relative;
+       width:100%;
+       text-align: center;
+       height: 3vh;
+       padding-right:1em;
+       left:50%;
+       transform:translate(-50%,0);
+   }
+   #footer a img{
+       width:6em;
+       height: auto;
+   }
+}
