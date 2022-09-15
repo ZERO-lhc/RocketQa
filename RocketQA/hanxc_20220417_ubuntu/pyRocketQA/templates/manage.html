@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="author" content="HanXC"/>
+    <link rel="shortcut icon" type="images/x-icon" href="{% static 'images/AI_icon.png' %}">
+    <link href="{% static 'images/AI_icon.png' %}" rel="icon" type="image/x-icon"/>
+    <link href="{% static 'images/AI_icon.png' %}" rel="Bookmark"/>
+    <link rel="stylesheet" type="text/CSS" href="{% static 'CSS/manage.css' %}">
+    <script src="{% static 'js/vue.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <title>
+        智能问答平台管理界面
+    </title>
+</head>
+<body>
+<div class="title">
+    <img src="{% static 'images/AI_logo.png' %}" class="logo">
+    <label>智能问答平台管理界面</label>
+</div>
+<div id="vue-app" class="manage" style="overflow: auto; min-height: 500px;"
+     v-bind:style="{'pointer-events': isLoading ? 'none' : 'auto'}">
+    <div class="navigation">
+        <ul>
+            <li v-for="(item) in navItems" v-bind:class="selectedNavId === item.id && 'nav-selected'"  v-text="item.name" @click="onNavClick(item.id)"></li>
+        </ul>
+    </div>
+    <div class="operation" v-if="selectedNavId === 'upload'">
+        <label class="file-box">
+            <input type="file" @change="onFileChange"
+                   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+            <span class="file-select"><label class="file-name" v-text="file?.name"></label></span>
+        </label>
+        <button class="upload-button" @click="doUpload">上传</button>
+        <div class="message"><label v-text="message"></label></div>
+    </div>
+    <div class="operation" v-if="selectedNavId === 'restart'">
+        <div>请确认是否要重启服务</div>
+        <button class="upload-button" @click="doRestart">重启</button>
+        <div class="message"><label v-text="message"></label></div>
+    </div>
+    <footer>
+        <img v-if="isLoading" src="{% static 'images/loading.gif' %}">
+    </footer>
+</div>
+
+<script>
+    const navItems = [{id:"upload", name:"数据文件"},{id:"restart", name:"重启服务"}];
+    const vueApp = new Vue({
+        el: "#vue-app",
+        data: {file: undefined, message: "", isLoading: false, selectedNavId: "upload"},
+        methods: {
+            doUpload() {
+                console.log(this.file);
+                this.message = "";
+                requestUpload(this);
+            },
+            onFileChange(event) {
+                this.message = "";
+                if (event.target.files[0]) {
+                   this.file = event.target.files[0];
+                }
+            },
+            onNavClick(id) {
+                this.message = "";
+                this.selectedNavId = id;
+            },
+            doRestart(){
+               this.message = "";
+               restartService(this);
+            }
+        }
+    })
+</script>
+</body>
+</html>
